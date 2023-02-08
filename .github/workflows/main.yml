@@ -24,11 +24,7 @@ jobs:
         with:    
           requirements: dev-requirements.txt
           no-deps: true
-          pre: true
-          editable: editable
-          platform: ':all:'
           upgrade: true
-          extra: extra options
       
       - name: Instala dependencias
         run: pip install -r dev-requiriments.txt
