@@ -11,20 +11,20 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Realiza o checkout
+      - name: Execute checkout
         uses: actions/checkout@v3
 
-      - name: Instala o Python 3.9
+      - name: Install Python 3.9
         uses: actions/setup-python@v4
         with:
           python-version: "3.9" 
 
-      - name: Pacote pip e Instala dependencias
+      - name: Package pip and install dependencies
         uses: BSFishy/pip-action@v1
         with:    
           requirements: dev-requirements.txt
           no-deps: true
           upgrade: true
       
-      - name: Executa o black
+      - name: Execute black lint
         run: black .

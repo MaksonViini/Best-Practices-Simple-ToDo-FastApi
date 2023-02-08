@@ -8,9 +8,10 @@ format:
 	@black .
 lint:
 	@isort . --check
-	@prospector . --with-tool pep257 --doc-warning
+req:
+	@pipreqs . --force
 doc:
-	
+	@pydocstyle
 test:
 	@pytest -v test/
 security:
