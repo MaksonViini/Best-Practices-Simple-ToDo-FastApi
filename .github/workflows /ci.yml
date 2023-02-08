@@ -1,0 +1,27 @@
+name: Continuos Integration
+
+on: 
+  pull_request:
+    branches:
+      - main
+    push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Realiza o checkout
+        uses: actions/checkout@v3
+
+      - name: Instala o Python 3.9
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9" 
+      
+      - name: Instala dependencias
+        run: pip install -r dev-requiriments.txt
+      
+      - name: Executa o black
+        run: black .
+
+
