@@ -1,28 +1,49 @@
-name: Continuos Integration
+# name: Continuos Integration
 
-# on: 
-#   pull_request:
-#     branches:
-#       - master
-#     push:
+# # on: 
+# #   pull_request:
+# #     branches:
+# #       - master
+# #     push:
+# on: [push]
+
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Realiza o checkout
+#         uses: actions/checkout@v3
+
+#       - name: Instala o Python 3.9
+#         uses: actions/setup-python@v4
+#         with:
+#           python-version: "3.9" 
+      
+#       - name: Instala dependencias
+#         run: pip install -r dev-requiriments.txt
+      
+#       - name: Executa o black
+#         run: black .
+
+
+name: Python package
+
 on: [push]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Realiza o checkout
-        uses: actions/checkout@v3
 
-      - name: Instala o Python 3.9
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python 3.x
         uses: actions/setup-python@v4
         with:
-          python-version: "3.9" 
-      
-      - name: Instala dependencias
-        run: pip install -r dev-requiriments.txt
-      
-      - name: Executa o black
-        run: black .
-
-
+          # Semantic version range syntax or exact version of a Python version
+          python-version: '3.x'
+          # Optional - x64 or x86 architecture, defaults to x64
+          architecture: 'x64'
+      # You can test your matrix by printing the current Python version
+      - name: Display Python version
+        run: python -c "import sys; print(sys.version)"
