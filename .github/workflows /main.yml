@@ -1,10 +1,11 @@
 name: Continuos Integration
 
-on: 
-  pull_request:
-    branches:
-      - master
-    push:
+# on: 
+#   pull_request:
+#     branches:
+#       - master
+#     push:
+on: [push]
 
 jobs:
   build:
