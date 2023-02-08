@@ -19,15 +19,12 @@ jobs:
         with:
           python-version: "3.9" 
 
-      - name: Pacote pip
+      - name: Pacote pip e Instala dependencias
         uses: BSFishy/pip-action@v1
         with:    
           requirements: dev-requirements.txt
           no-deps: true
           upgrade: true
-      
-      - name: Instala dependencias
-        run: pip install -r dev-requiriments.txt
       
       - name: Executa o black
         run: black .
