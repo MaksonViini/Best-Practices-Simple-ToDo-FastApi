@@ -47,7 +47,7 @@ jobs:
           context: ./src
           file: Dockerfile
           push: true
-          tags: 
+          tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/k8s-fastapi-app:${{ github.run_number }}
             ${{ secrets.DOCKERHUB_USERNAME }}/k8s-fastapi-app:latest
   # CD:
