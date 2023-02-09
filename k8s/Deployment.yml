@@ -8,18 +8,21 @@ spec:
     matchLabels:
       app: web
   template:
+    metadata:
+      labels:
+        app: web
     spec:
       containers:
         - name: web
           image: maksonviini/k8s-fastapi-app
           ports:
             - containerPort: 8080
-
+          imagePullPolicy: Always
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: web
+  name: web-api-svc
 spec:
   selector:
     app: web
