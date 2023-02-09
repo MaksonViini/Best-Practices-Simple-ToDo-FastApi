@@ -9,7 +9,7 @@ terraform {
 }
 
 provider "digitalocean" {
-  token = var.DO_TOKEN
+  token = DO_TOKEN
 }
 
 resource "digitalocean_kubernetes_cluster" "api_cluster" {
