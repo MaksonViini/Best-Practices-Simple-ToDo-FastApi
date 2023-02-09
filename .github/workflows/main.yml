@@ -51,8 +51,8 @@ jobs:
 
  
       
-  # CD:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Execute checkout
-  #       uses: actions/checkout@v3
+  CD:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Execute checkout
+        uses: actions/checkout@v3
