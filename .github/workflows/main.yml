@@ -48,7 +48,7 @@ jobs:
           file: Dockerfile
           push: true
           tags: 
-            maksonviini/k8s-fastapi-app:${{ github.run_number }}
-            maksonviini/k8s-fastapi-app:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/k8s-fastapi-app:${{ github.run_number }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/k8s-fastapi-app:latest
   # CD:
   #   runs-on: ubuntu-latest
