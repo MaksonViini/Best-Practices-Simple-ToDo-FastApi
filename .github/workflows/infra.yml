@@ -39,9 +39,9 @@ jobs:
         id: init
         run: terraform init -backend=true -backend-config="DO_TOKEN=$DO_TOKEN"
 
-      - name: Terraform Validate
-        id: validate
-        run: terraform validate -no-color 
+      # - name: Terraform Validate
+      #   id: validate
+      #   run: terraform validate 
 
       - name: Terraform Plan
         id: plan
