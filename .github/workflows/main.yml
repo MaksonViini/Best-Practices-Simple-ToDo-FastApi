@@ -44,7 +44,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
-          context: ./src
+#           context: ./src
           file: Dockerfile
           push: true
           tags: |
