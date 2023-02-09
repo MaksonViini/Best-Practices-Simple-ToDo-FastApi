@@ -46,6 +46,7 @@ jobs:
 
       - name: Terraform Apply
         run: terraform apply -auto-approve -input=true -var "DO_TOKEN=$DO_TOKEN"
+        continue-on-error: true
 
       - name: Output Terraform Logs
         uses: actions/github-script@v6
