@@ -3,6 +3,10 @@ variable "project_id" {
   default = "dulcet-legend-332817"
 }
 
+variable "DO_TOKEN" {
+  default = {}
+}
+
 variable "region_ny" {
   type    = string
   default = "nyc1"
