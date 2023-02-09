@@ -1,5 +1,4 @@
-
-name: Continuos Integration
+name: Continuos Integration/ Continuos Delivery
 
 on: 
   pull_request:
@@ -44,11 +43,16 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
-#           context: ./src
           file: Dockerfile
           push: true
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/k8s-fastapi-app:${{ github.run_number }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/k8s-fastapi-app:v${{ github.run_number }}
             ${{ secrets.DOCKERHUB_USERNAME }}/k8s-fastapi-app:latest
+
+ 
+      
   # CD:
   #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Execute checkout
+  #       uses: actions/checkout@v3
