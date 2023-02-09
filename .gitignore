@@ -1,3 +1,10 @@
 *__pycache__
 *.pyc
 venv/
+
+env.tf
+*.tfstate
+*.hcl
+.terraform/
+*.backup
+*.env

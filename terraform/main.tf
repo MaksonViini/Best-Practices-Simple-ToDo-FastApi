@@ -8,23 +8,25 @@ terraform {
 }
 
 provider "digitalocean" {
-  token = var.provider.do_token
+  token = var.DO_TOKEN
 }
 
 resource "digitalocean_kubernetes_cluster" "api_cluster" {
   name   = "ks8-fastapi-web"
   region = var.region_ny
 
+  version = var.version_k8s
+
   node_pool {
-    name       = var.node.name
-    size       = var.node.size
-    node_count = var.node.node_count
+    name       = var.name
+    size       = var.size
+    node_count = var.node_count
 
 
     taint {
-      key    = var.taint.key
-      value  = var.taint.value
-      effect = var.taint.effect
+      key    = var.key
+      value  = var.value
+      effect = var.effect
     }
   }
 }
