@@ -3,3 +3,4 @@ motor==3.1.1
 pydantic==1.10.4
 python-dotenv==0.21.1
 starlette==0.23.0
+uvicorn

@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from .controllers import todo
 
+
 app = FastAPI()
 
 app.add_middleware(
