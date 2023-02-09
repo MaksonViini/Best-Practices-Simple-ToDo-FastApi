@@ -1,7 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: web
+  name: web-deployment 
+  namespace: example
+  labels:
+    app: web
 spec:
   replicas: 10
   selector:
@@ -15,9 +18,12 @@ spec:
       containers:
         - name: web
           image: maksonviini/k8s-fastapi-app
+          args: []
           ports:
             - containerPort: 8080
+          resources: {}
           imagePullPolicy: Always
+
 ---
 apiVersion: v1
 kind: Service
