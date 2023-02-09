@@ -1,6 +1,6 @@
 name: Continuos Integration/ Continuos Delivery
 
-on: 
+on:
   pull_request:
     branches:
       - master
@@ -16,19 +16,19 @@ jobs:
       - name: Install Python 3.9
         uses: actions/setup-python@v4
         with:
-          python-version: "3.9" 
+          python-version: "3.9"
 
       - name: Package pip and install dependencies
         uses: BSFishy/pip-action@v1
-        with:    
+        with:
           requirements: dev-requirements.txt
           no-deps: true
           upgrade: true
-      
+
       - name: Execute black lint
         run: black .
 
-  CI: 
+  CI:
     runs-on: ubuntu-latest
     steps:
       - name: Execute checkout
@@ -49,8 +49,6 @@ jobs:
             ${{ secrets.DOCKERHUB_USERNAME }}/k8s-fastapi-app:v${{ github.run_number }}
             ${{ secrets.DOCKERHUB_USERNAME }}/k8s-fastapi-app:latest
 
- 
-      
   CD:
     runs-on: ubuntu-latest
     needs: [CI]
@@ -60,7 +58,17 @@ jobs:
 
       - name: Define Context
         uses: Azure/k8s-set-context@v3.0
-        with: 
-          method: kubeconfig 
+        with:
+          method: kubeconfig
           kubeconfig: ${{ secrets.K8S_CONFIG }}
           cluster-type: generic
+
+      - name: Deploy to Kubernetes Cluster
+        uses: Azure/k8s-deploy@v4.9
+        with:
+          images: ${{ secrets.DOCKERHUB_USERNAME }}/k8s-fastapi-app:v${{ github.run_number }}
+          manifests: |
+            k8s/Deployment.yml
+          strategy: basic
+          action: deploy
+          token: ${{ github.token }}
