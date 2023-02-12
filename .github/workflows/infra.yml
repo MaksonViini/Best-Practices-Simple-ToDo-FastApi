@@ -10,7 +10,7 @@ env:
   DO_TOKEN: ${{ secrets.DO_TOKEN }}
 
 jobs:
-  iac:
+  IAC:
     runs-on: ubuntu-latest
     env:
       TF_WORKING_DIR: "terraform"
