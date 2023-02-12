@@ -3,32 +3,38 @@ kind: Deployment
 metadata:
   name: web-deployment
   labels:
-    app: web
+    app: web-deployment
 spec:
-  replicas: 10
+  replicas: 3
   selector:
     matchLabels:
-      app: web
+      app: web-deployment
   template:
     metadata:
       labels:
-        app: web
+        app: web-deployment
     spec:
       containers:
-        - name: web
+        - name: web-deployment-container
           image: maksonviini/k8s-fastapi-app
           ports:
-            - containerPort: 8080
+            - name: http
+              containerPort: 80
+              hostPort: 80
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: web-api-svc
+  name: web-deployment
+  labels:
+    app: web
 spec:
   selector:
-    app: web
+    app: web-deployment
   ports:
-    - port: 80
+    - name: http
+      protocol: TCP
+      port: 80
       targetPort: 8080
   type: LoadBalancer
