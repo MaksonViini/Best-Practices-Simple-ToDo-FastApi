@@ -4,6 +4,7 @@ variable "project_id" {
 }
 
 variable "DO_TOKEN" {
+  type    = string
   default = {}
 }
 

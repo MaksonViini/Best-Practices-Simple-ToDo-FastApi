@@ -1,15 +1,13 @@
-terraform {
-  required_version = "1.3.7"
-  required_providers {
-    digitalocean = {
-      source  = "digitalocean/digitalocean"
-      version = "2.26.0"
-    }
-  }
-}
+module "s3_bucket" {
+  source = "terraform-aws-modules/s3-bucket/aws"
 
-provider "digitalocean" {
-  token = var.DO_TOKEN
+  bucket = "terraform-remote-state-bucket-id-1"
+  acl    = "private"
+
+  versioning = {
+    enabled = true
+  }
+
 }
 
 resource "digitalocean_kubernetes_cluster" "api_cluster" {

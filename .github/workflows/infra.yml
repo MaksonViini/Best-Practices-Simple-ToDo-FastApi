@@ -8,6 +8,8 @@ on:
 
 env:
   DO_TOKEN: ${{ secrets.DO_TOKEN }}
+  ACCESS_KEY: ${{ secrets.ACCESS_KEY }}
+  SECRET_KEY: ${{ secrets.SECRET_KEY }}
 
 jobs:
   IAC:
@@ -37,14 +39,14 @@ jobs:
 
       - name: Terraform Init
         id: init
-        run: terraform init -input=true -var "DO_TOKEN=$DO_TOKEN"
+        run: terraform init -input=true -var "DO_TOKEN=$DO_TOKEN" -var "ACCESS_KEY=$ACCESS_KEY" -var "SECRET_KEY=$SECRET_KEY"
 
       - name: Terraform Plan
         id: plan
-        run: terraform plan -input=true -var "DO_TOKEN=$DO_TOKEN"
+        run: terraform plan -input=true -var "DO_TOKEN=$DO_TOKEN" -var "ACCESS_KEY=$ACCESS_KEY" -var "SECRET_KEY=$SECRET_KEY"
 
       - name: Terraform Apply
-        run: terraform apply -auto-approve -input=true -var "DO_TOKEN=$DO_TOKEN"
+        run: terraform apply -auto-approve -input=true -var "DO_TOKEN=$DO_TOKEN" -var "ACCESS_KEY=$ACCESS_KEY" -var "SECRET_KEY=$SECRET_KEY"
         continue-on-error: true
 
       - name: Output Terraform Logs
